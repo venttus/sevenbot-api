@@ -43,9 +43,9 @@ export async function PUT(request: NextRequest) {
       }
     );
 
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Tratamento específico para o erro "Registro não encontrado" no Prisma
-    if (error.code === 'P2025') {
+    if (error instanceof Error && (error as any).code === 'P2025') {
       console.error("ID não encontrado:", error);
       return new Response(JSON.stringify({ error: "Workspace com o ID especificado não encontrado." }), {
         status: 404,
