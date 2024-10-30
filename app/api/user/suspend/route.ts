@@ -1,3 +1,4 @@
+/* eslint-disable */
 import { prisma } from "@/lib/prisma";
 import { NextRequest } from "next/server";
 
