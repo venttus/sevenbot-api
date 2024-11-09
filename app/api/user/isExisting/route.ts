@@ -13,10 +13,14 @@ export async function POST(request: NextRequest) {
             });
         }
 
+
+
         // Verifica se o usuário existe na tabela User
         const user = await prisma.user.findUnique({
             where: { email },
         });
+
+        console.log(user)
 
         // Se o usuário não existe, retorna isExisting como false
         if (!user) {
@@ -49,6 +53,8 @@ export async function POST(request: NextRequest) {
         const workspace = await prisma.workspace.findUnique({
             where: { id: member.workspaceId },
         });
+
+        console.log(workspace)
 
         // Define isExisting como false se o workspace estiver suspenso, caso contrário, true
         const isExisting = workspace?.isSuspended ? false : true;
